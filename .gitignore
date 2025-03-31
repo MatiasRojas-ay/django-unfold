@@ -1,0 +1,48 @@
+# Entorno virtual
+venv/
+ENV/
+env/
+.venv/
+
+# Archivos de Python
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Archivos temporales
+*.log
+*.pot
+*.pyc
+*.sqlite3
+*.db
+
+# Archivos de configuración locales
+*.env
+.env.*
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db
+
+# Archivos de Django
+*.migrations/
+db.sqlite3
+
+# Archivos de editor
+.vscode/
+.idea/
+*.swp
+
+# Archivos de cobertura de tests
+htmlcov/
+.coverage
+.tox/
+nosetests.xml
+coverage.xml
+*.cover
+.pytest_cache/
+
+# Archivos de distribución
+dist/
+build/
+*.egg-info/
