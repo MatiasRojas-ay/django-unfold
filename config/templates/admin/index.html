@@ -1,0 +1,19 @@
+{% extends "admin/base.html" %}
+{% load unfold %}
+
+{% block content %}
+  {% component "unfold/components/container.html" %}
+    <div class="grid grid-cols-2 gap-4">
+      {% for metric in kpis %}
+        {% component "unfold/components/card.html" %}
+          {% component "unfold/components/text.html" %}
+            {{ metric.title }}
+          {% endcomponent %}
+          {% component "unfold/components/title.html" %}
+            {{ metric.metric }}
+          {% endcomponent %}
+        {% endcomponent %}
+      {% endfor %}
+    </div>
+  {% endcomponent %}
+{% endblock %}

@@ -25,7 +25,8 @@ __pycache__/
 Thumbs.db
 
 # Archivos de Django
-*.migrations/
+**/migrations/
+config/migrations/
 db.sqlite3
 
 # Archivos de editor

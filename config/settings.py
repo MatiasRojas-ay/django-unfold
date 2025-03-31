@@ -12,6 +12,9 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 
+from django.utils.translation import gettext_lazy as _
+from django.urls import reverse_lazy
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -31,14 +34,60 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    "unfold",  # antes del admin clásico
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
     'books',
 ]
+
+
+UNFOLD = {
+    "SITE_HEADER": "Admin Libros",
+
+    "DASHBOARD_CALLBACK": "config.admin.dashboard_callback",
+
+    "SIDEBAR": {
+        "show_search": True,
+        "show_all_applications": False,
+        "navigation": [
+            {
+                "title": _("Menú Principal"),
+                "separator": True,
+                "collapsible": True,
+                "items": [
+                    {
+                        "title": _("Dashboard"),
+                        "icon": "dashboard",
+                        "link": reverse_lazy("admin:index"),
+                    },
+                ],
+            },
+            {
+                "title": _("Gestión de Libros"),
+                "separator": False,
+                "collapsible": True,
+                "items": [
+                    {
+                        "title": _("Autores"),
+                        "icon": "person",
+                        "link": reverse_lazy("admin:books_autor_changelist"),
+                    },
+                    {
+                        "title": _("Libros"),
+                        "icon": "menu_book",
+                        "link": reverse_lazy("admin:books_libro_changelist"),
+                    },
+                ],
+            },
+        ],
+    },
+}
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -55,7 +104,7 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / "config/templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
